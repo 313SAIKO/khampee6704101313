@@ -1,8 +1,24 @@
 <template>
-  <q-page class="q-pa-md">
+  <q-page class="flex flex-center">
     <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
-      <q-input filled v-model="name" label="Your name" hint="Name and surname" />
-      <q-input filled v-model.number="age" label="Your age" type="number" />
+      <q-input
+        filled
+        v-model="name"
+        label="Your name"
+        :rules="[val => !!val || 'Please type something']"
+      />
+
+      <q-input
+        filled
+        v-model="age"
+        label="Your age"
+        type="number"
+        :rules="[
+          val => !!val || 'Please type your age',
+          val => val > 0 || 'Please type a real age'
+        ]"
+      />
+
       <q-toggle v-model="accept" label="I accept the license and terms" />
 
       <div>
@@ -15,28 +31,18 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useQuasar } from 'quasar'
 
-const $q = useQuasar()
 const name = ref('')
 const age = ref(null)
 const accept = ref(false)
 
-function onSubmit() {
-  if (!accept.value) {
-    $q.notify({
-      type: 'negative',
-      message: 'You need to accept the terms'
-    })
-  } else {
-    $q.notify({
-      type: 'positive',
-      message: `Submitted successfully! Name: ${name.value}, Age: ${age.value}`
-    })
+function onSubmit () {
+  if (accept.value) {
+    alert('Submitted!')
   }
 }
 
-function onReset() {
+function onReset () {
   name.value = ''
   age.value = null
   accept.value = false
