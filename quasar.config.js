@@ -41,6 +41,7 @@ export default defineConfig((/* ctx */) => {
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
+      publicPath: '/khampee6704101313/',
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
