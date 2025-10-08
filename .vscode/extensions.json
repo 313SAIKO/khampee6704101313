@@ -1,5 +1,5 @@
 {
-  "recommendations": [
+  "recommendations": [ //sdd
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "editorconfig.editorconfig",
